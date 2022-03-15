@@ -1,14 +1,19 @@
 // buiness logic
 // constructor
-function AddressBook(firstName, lastname, phoneNo) {
-    this.addressBook = firstName;
-    this.lastname = lastname;
-    this.phoneNo = phoneNo;
-}
+// function AddressBook(firstName, lastname, phoneNo) {
+//     this.addressBook = firstName;
+//     this.lastname = lastname;
+//     this.phoneNo = phoneNo;
+// }
 // contact constructor
 function Contact(first, last) {
     this.firstName = first;
     this.lastName = last;
+}
+
+// Adding a full name prototype
+Contact.prototype.fullName = function(){
+    return this.firstName + " " + this.lastName;
 }
 
 // var newP = new Contact('john', 'kim');
@@ -16,18 +21,24 @@ function Contact(first, last) {
 
 // jQuery
 // user Interface Logic
-$().ready(function(){
-   $("form#new-contact").submit(function(event){
-    event.preventDefault();
+$().ready(function () {
+    $("form#new-contact").submit(function (event) {
+        event.preventDefault();
 
-    var firstNameInput = $("input#newFirstName").val();
-    var lastNameInput = $("input#newLastName").val();
+        var firstNameInput = $("input#newFirstName").val();
+        var lastNameInput = $("input#newLastName").val();
 
-    var newContact = new Contact(firstNameInput, lastNameInput);
-    
-    $("ul#contacts").append("<li><span class='contact'>" + newContact.firstName + " " + newContact.lastName + "</span></li>");
+        var newContact = new Contact(firstNameInput, lastNameInput);
 
-    $("input#newFirstName").val("");
-    $("input#newLastName").val("");
-   });
+        $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+
+        $(".contact").last().click(function () {
+            $("#showContact").show();
+            $("#showContact h2").text(newContact.firstName + newContact.lastName);
+            $(".first-name").text(newContact.firstName);
+            $(".last-name").text(newContact.lastName);
+        });
+        $("input#newFirstName").val("");
+        $("input#newLastName").val("");
+    });
 });
