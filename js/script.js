@@ -6,9 +6,11 @@
 //     this.phoneNo = phoneNo;
 // }
 // contact constructor
-function Contact(first, last) {
+function Contact(first, last, email, city) {
     this.firstName = first;
     this.lastName = last;
+    this.emailAddress = email;
+    this.city = city;
 }
 
 // Adding a full name prototype
@@ -27,10 +29,12 @@ $().ready(function () {
 
         var firstNameInput = $("input#newFirstName").val();
         var lastNameInput = $("input#newLastName").val();
+        var emailInput = $("input#emailAddress").val();
+        var city = $("input#city").val();
 
-        var newContact = new Contact(firstNameInput, lastNameInput);
+        var newContact = new Contact(firstNameInput, lastNameInput, emailInput, city);
 
-        $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+        $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() +  "<br>" + emailInput + city + "</span></li>");
 
         $(".contact").last().click(function () {
             $("#showContact").show();
