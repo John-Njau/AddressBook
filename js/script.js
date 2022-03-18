@@ -20,6 +20,9 @@ Contact.prototype.fullName = function () {
 }
 
 // full Address prototype
+Address.prototype.fullAddress = function(){
+    return this.streetName + ", " + this.cityName + ", " + this.countyName;
+}
 
 // Contact object and an Address object
 // var newP = new Contact('john', 'kim');
@@ -80,7 +83,9 @@ $().ready(function () {
 
             $("ul#addresses").text("");
             newContact.addresses.forEach(function () {
-                $("ul#addresses").append("<li>" + address.street + ", " + address.city + " " + address.County + "</li>");
+                // replacing using the address prototype
+                $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
+                // $("ul#addresses").append("<li>" + address.street + ", " + address.city + " " + address.county + "</li>");
             });
         });
 

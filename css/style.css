@@ -1,10 +1,11 @@
 #showContact{
-    display: none;
+    /* display: none; */
 }
 
 .contact{
     cursor: pointer;
     color: #0088cc;
+    background-color: yellow;
 }
 
 .contact:hover{
